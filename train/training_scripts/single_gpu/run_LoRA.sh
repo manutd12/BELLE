@@ -10,31 +10,32 @@
 
 OUTPUT_PATH=$1
 ZERO_STAGE=$2
+model_name_or_path=$3
 
-rm -rf output/
-mkdir -p $OUTPUT_PATH
+#rm -rf output/
+#mkdir -p $OUTPUT_PATH
 echo $OUTPUT_PATH
 echo $ZERO_STAGE
 
-model_name_or_path=/workspace/model_name_or_path/hf_llama_7b
+
 lora_module_name="q_proj,k_proj,v_proj,o_proj,down_proj,gate_proj,up_proj"
 # If the model is Bloom, lora_module_name should be 
 # model_name_or_path=/workspace/model_name_or_path/bloomz-7b1-mt
 # lora_module_name="query_key_value,mlp"
 
 echo ${lora_module_name}
-echo ${model_name_or_path}
+#echo ${model_name_or_path}
 
 deepspeed --num_gpus 1 main.py \
    --sft_only_data_path belleMath.json \
    --data_split 10,0,0 \
-   --model_name_or_path ${model_name_or_path} \
+   --model_name_or_path $model_name_or_path \
    --per_device_train_batch_size 2 \
    --per_device_eval_batch_size 1 \
-   --max_seq_len 1024 \
+   --max_seq_len 64 \
    --learning_rate 3e-4 \
    --weight_decay 0. \
-   --num_train_epochs 5 \
+   --num_train_epochs 2 \
    --gradient_accumulation_steps 1 \
    --lr_scheduler_type cosine \
    --num_warmup_steps 100 \
