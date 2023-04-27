@@ -28,7 +28,7 @@ echo ${lora_module_name}
 #echo ${model_name_or_path}
 
 deepspeed --num_gpus 1 main.py \
-   --sft_only_data_path belleMath.json \
+   --sft_only_data_path $sft_only_data_path \
    --data_split 10,0,0 \
    --model_name_or_path $model_name_or_path \
    --per_device_train_batch_size 2 \
