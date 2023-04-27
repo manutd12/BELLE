@@ -11,6 +11,7 @@
 OUTPUT_PATH=$1
 ZERO_STAGE=$2
 model_name_or_path=$3
+sft_only_data_path=$4
 
 #rm -rf output/
 #mkdir -p $OUTPUT_PATH
