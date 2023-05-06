@@ -5,5 +5,5 @@
 python3 prompt_eval.py \
     --model_name_or_path /apdcephfs_cq3/share_2973545/curvasong/pretrain_model/LLAMA/llama-7b-hf \
     --finetuned_model_name_or_path /apdcephfs_cq3/share_2973545/curvasong/pretrain_model/LLAMA/llama-7b-hf \
-    --test_file /apdcephfs_cq3/share_2973545/curvasong/dataset/belle/multiturn_chat_0.8M/multiturn_chat_50.json \
+    --test_file /apdcephfs_cq3/share_2973545/curvasong/dataset/belle/multiturn_chat_0.8M/multiturn_chat_50_conv.json \
     --predictions_file /apdcephfs_cq3/share_2973545/curvasong/test/predictions_chat50.json
